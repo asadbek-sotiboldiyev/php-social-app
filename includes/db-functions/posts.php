@@ -1,8 +1,8 @@
 <?php
 
 // Post table
-function get_post_by_author_id($id, $db){
-	$query = $db->prepare("SELECT * FROM posts WHERE author_id = :id");
+function get_posts_by_author_id($id, $db){
+	$query = $db->prepare("SELECT * FROM posts WHERE author_id = :id ORDER BY id DESC");
 	$query->execute([
 		"id" => $id
 	]);

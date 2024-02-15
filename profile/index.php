@@ -7,6 +7,7 @@ require "$path/database.php";
 require "$path/db-functions/users.php";
 require "$path/db-functions/profiles.php";
 require "$path/db-functions/posts.php";
+require "$path/db-functions/likes.php";
 session_start();
 
 $username = $_GET['username'];
@@ -15,11 +16,10 @@ $user = get_user_by_username($username, $db);
 if(empty($user)){
 	echo "<center><h1>User not found</h1><br><a href='/'>Back</a></center>";
 }else{
-
+ 
 	$profile = get_profile_by_username($username, $db);
 	$profile_id = $profile['id'];
-	$posts = get_post_by_author_id($profile_id, $db);
-
+	$posts = get_posts_by_author_id($profile_id, $db);
 	require "$path/header.php";
 ?>
 
@@ -49,15 +49,31 @@ if(empty($user)){
 	<?php endif ?>
 
 	<hr>
-
-	<?php foreach ($posts as $post): ?>
-		<div class="post-card">
-			<p><?php echo $post['text']?></p>
-			<button class="like-btn"><img src="../static/images/like.png"></button> <?= $post['likes'] ?>
-			<hr>
-			<p><?= $post['date']?></p>
-		</div>
-	<?php endforeach ?>
+	<div id="posts">
+		<?php foreach ($posts as $post): ?>
+			<div class="post-card">
+				<p><?php echo $post['text']?></p>
+				<button onclick=like(this) class="like-btn" value=<?php echo $post['id']?> ><img src="../static/images/like.png"></button> <?= $post['likes'] ?>
+				<hr>
+				<p><?= $post['date']?></p>
+			</div>
+		<?php endforeach ?>
+	</div>
 </div>
 <!-- End Content -->
+<script>
+function like(e){
+	if(<?php echo ($_SESSION['authenticated'] ? 1 : 0) ?>){
+		const username = "<?php echo $_SESSION['profile']['username'] ?>";
+		const profile_id = "<?php echo $_SESSION['profile']['id'] ?>";
+		let post_id = e.value;
+		console.log(post_id);
+		console.log(username);
+
+
+	}else{
+		alert("Register required");
+	}
+}
+</script>
 <?php require "$path/footer.php"; } ?>

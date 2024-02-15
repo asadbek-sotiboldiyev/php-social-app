@@ -1,11 +1,16 @@
 <?php
 $path = "../includes";
 require "$path/database.php";
-
-$username = $_GET['username'];
-$user = $db->query("SELECT name, username, email FROM users WHERE username = '$username'")->fetch();
-if(empty($user))
-	echo json_encode(['message' => 'user-not-found']);
-else
-	echo json_encode($user);
+$command = $_GET['command'];
+if($command == 'like'){
+	$post_id = $_GET['post_id'];
+	$username = $_GET['username'];
+	$response = [
+		"message" => "liked",
+		"post" => $post_id,
+		"user" => $username
+	];
+	echo json_encode($response);
+}
+else echo json_encode(['message' => 'error']);
 ?>
