@@ -9,6 +9,15 @@ function get_posts_by_author_id($id, $db){
 	$posts = $query->fetchAll(PDO::FETCH_ASSOC);
 	return $posts;
 }
+function get_posts_author_in_list($profiles, $db){
+	// $query = $db->prepare("SELECT * FROM posts WHERE author_id in (:profiles)");
+	// $query->execute([
+	// 	"profiles" => $profiles
+	// ]);
+	$query = $db->query("SELECT * FROM posts WHERE author_id in ($profiles) ORDER BY date DESC");
+	$posts = $query->fetchAll(PDO::FETCH_ASSOC);
+	return $posts;
+}
 function create_post($author_id, $text, $photo = '0', $db){
 	if($photo != '0'){
 		$query = $db->prepare("INSERT INTO posts (`author_id`, `text`, `photo`, `date`) VALUES (:author_id, :text, :photo, :date)");
