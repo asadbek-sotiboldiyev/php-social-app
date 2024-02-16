@@ -32,7 +32,7 @@ $posts = get_posts_author_in_list($users_list,$db);
 				<a href="/profile/?username=<?=$post_author_username?>" class="card-user">
 							<?= $post_author_username ?>
 				</a>
-				<!-- <img src="default.jpg" class="card-img"> -->
+				<img src="<?= $post['photo']?>" class="card-img">
 				<div class="card-btn-group">
 					<button class="like-btn" value=<?php echo $post['id']?> ><img src="./static/images/like.png"></button> <?= $post['likes'] ?>
 				</div>

@@ -52,6 +52,7 @@ if(empty($user)){
 	<div id="posts">
 		<?php foreach ($posts as $post): ?>
 			<div class="post-card">
+				<img src="<?= $post['photo']?>" style='width:100%'>
 				<p><?php echo $post['text']?></p>
 				<button onclick=like(this) class="like-btn" value=<?php echo $post['id']?> ><img src="../static/images/like.png"></button> <?= $post['likes'] ?>
 				<hr>

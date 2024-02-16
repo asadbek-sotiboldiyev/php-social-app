@@ -16,7 +16,21 @@ $username = $profile['username'];
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$text = $_POST['text'];
-    create_post($author_id = $profile['id'], $text = $text, $photo = "0", $db = $db);
+    $file_name = $_FILES['image']['name'];
+    $tmp_name = $_FILES['image']['tmp_name'];
+    $folder = "../media/post/$file_name".time();
+    if(move_uploaded_file($tmp_name, $folder)){
+        echo "<script>alert('Rasm yuklandi')</script>";
+    }else{
+        echo "<script>alert('Error')</script>";
+    }
+
+    create_post(
+        $author_id = $profile['id'], 
+        $text = $text,
+        $photo = $folder, 
+        $db = $db
+    );
 	header("Location: /profile?username=$username");
 	die();
 }
@@ -27,13 +41,13 @@ require "$path/header.php";
 <!-- Content -->
 
 <div class="container">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <h2>Post Add +</h2>
-        <form method="POST">
-            <p>Text</p>
-            <textarea name="text" rows="5"></textarea>
-            <button type="submit">Share</button>
-        </form>
+        <p>Text</p>
+        <textarea name="text" rows="5"></textarea>
+        <input require type="file" name="image" id="image">
+        <br>
+        <button type="submit">Share</button>
     </form>
 </div>
 
