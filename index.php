@@ -22,24 +22,25 @@ $posts = get_posts_author_in_list($users_list,$db);
 <div class="container">
 	<h1>Posts</h1>
 	<div>
+	<center>
 		<?php foreach ($posts as $post): ?>
 			<?php
 				$profile = get_profile_by_id($post['author_id'], $db);
 				$post_author_username = $profile['username'];
 			?>
-			<div class="block">
-				<h4>
-					<a href="/profile/?username=<?=$post_author_username?>">
-						<?= $post_author_username ?>
-					</a>
-				</h4>
-				<hr>
-				<p><?= $post['text'] ?></p>
-				<hr>
-				<p style="text-align:right"><?= $post['date'] ?></p>
+			<div class="post-card">
+				<a href="/profile/?username=<?=$post_author_username?>" class="card-user">
+							<?= $post_author_username ?>
+				</a>
+				<!-- <img src="default.jpg" class="card-img"> -->
+				<div class="card-btn-group">
+					<button class="like-btn" value=<?php echo $post['id']?> ><img src="./static/images/like.png"></button> <?= $post['likes'] ?>
+				</div>
+				<p class="card-text"><?= $post['text'] ?></p>
+				<p class="card-date"><?= $post['date'] ?></p>
 			</div>
-			<br>
 		<?php endforeach ?>
+	</center>
 	</div>
 </div>
 <!-- End-Content -->

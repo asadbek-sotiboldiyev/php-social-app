@@ -1,6 +1,6 @@
 <?php
 
-require "$path/../db-functions/users.php";
+require "$path/db-functions/users.php";
 
 function checker($list) {
 	foreach($list as $item) {

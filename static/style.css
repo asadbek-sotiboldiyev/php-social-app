@@ -8,6 +8,82 @@
 	width: 90%;
 	margin: 0 auto;
 }
+/* Home page */
+header{
+	background-color: blue;
+	padding: 5px 0;
+}
+#header-flex{
+	display: flex;
+	justify-content: space-between;
+}
+#afisha a{
+	color: white;
+	text-decoration: none;
+}
+.nav-link{
+	display: inline-block;
+	color: white;
+	text-decoration: none;
+	background-color: #187dff;
+	padding: 2px 8px;
+	margin: 0 2px;
+	border: none;
+	border-radius: 5px;
+	font-size: 17px;
+}
+.nav-link:hover{
+	background-color: #4baeff;
+	text-decoration: underline;
+}
+.post-card{
+	text-align: left;
+	width: 50%;
+	background-color: #eee;
+	margin: 5px 0;
+	border: 1px solid black;
+}
+.card-user, .card-text, .card-date, .card-btn{
+	display: inline-block;
+	margin: 0 10px;
+}
+.card-user{
+	font-size: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.card-img{
+	width: 100%;
+}
+.card-text{
+	font-size: 20px;
+}
+.card-btn{
+	font-size: 20px;
+	border: none;
+	border-radius: 5px;
+	padding-right: 1px;
+	padding-bottom: 1px;
+}
+
+/* Post */
+
+.like-btn{
+    border: none;
+    border-radius: 5px;
+    padding: 1px 3px;
+    margin: 2px 0;
+	margin-left: 10px;
+}
+.like-btn img{
+    width: 30px;
+    height: 30px;
+}
+.liked{
+    background-color: #fc3d3d;
+}
+
+/* Default - for test */
 .block{
 	border: 1px solid black;
 	padding: 5px;
@@ -24,12 +100,4 @@
 	background-color: green;
 	margin: 2px;
 	color: white;
-}
-header{
-	background-color: #0866ff;
-	color: white;
-}
-header a{
-	color: white;
-	text-decoration: none;
 }

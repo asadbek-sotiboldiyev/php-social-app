@@ -12,19 +12,20 @@ session_start();
 <body>
 	<header>
 		<div class="container">
-			<h1><a href="/">MyBlog</a></h1>
-			<nav>
-				<?php if($_SESSION['authenticated']): ?>
-					Profile: <a href="/profile/?username=<?= $_SESSION['profile']['username'] ?>">
-						<?php echo $_SESSION['profile']['name']; ?>
-					</a>
-					<br>
-					<a href="/auth/logout.php">Logout</a>
-				<?php else: ?>
-					<a href="/auth/signup.php">Sign-Up</a>
-					<a href="/auth/login.php">Login</a>
-				<?php endif ?>
-			</nav>
+			<div id="header-flex">
+				<h2 id="afisha">
+					<a href="/">PHPgramm</a>
+				</h2>
+				<nav id="header-nav">
+					<?php if($_SESSION['authenticated']): ?>
+						<a href="/profile/?username=<?= $_SESSION['profile']['username'] ?>" class="nav-link">
+							<?php echo $_SESSION['profile']['name']; ?>
+						</a>
+					<?php else: ?>
+						<a href="/auth/signup.php" class="nav-link">Register</a>
+						<a href="/auth/login.php" class="nav-link">Login</a>
+					<?php endif ?>
+				</nav>
+			</div>
 		</div>
 	</header>
-	<hr>
