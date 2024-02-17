@@ -28,7 +28,16 @@ if(empty($user)){
 <link rel="stylesheet" href="../static/post.css">
 <div class="container">
 	<div class='profile-info'>
-		<img class="profile-img" src="../media/profile-img/default.jpg">
+		<div>
+			<img class="profile-img" src="<?= $profile['photo']?>">
+			<!-- 
+			<?php if ($_SESSION['profile']['username']==$username): ?>
+				<form action="" method='POST' enctype="multipart/form-data">
+					<button class='button'><h2>image</h2></button>
+				</form>
+			<?php endif ?> 
+			-->
+		</div>
 		<div class="profile-right">
 			<h2><?= $profile['username'] ?></h2>
 			<table >
@@ -45,7 +54,7 @@ if(empty($user)){
 
 	<?php if ($_SESSION['profile']['username']==$username): ?>
 		<a class="button" href="/post/add.php">POST ADD +</a>
-		<a class="button" href="#">SETTINGS</a>
+		<a class="button" href="edit.php">EDIT</a>
 	<?php endif ?>
 
 	<hr>

@@ -18,10 +18,11 @@ foreach($users as $user){
 $users_list = substr($users_list, 1);
 $posts = get_posts_author_in_list($users_list,$db);
 ?>
+
 <!-- Content -->
+
 <div class="container">
-	<h1>Posts</h1>
-	<div>
+	<div id="posts-reels">
 	<center>
 		<?php foreach ($posts as $post): ?>
 			<?php
@@ -37,6 +38,7 @@ $posts = get_posts_author_in_list($users_list,$db);
 					<button class="like-btn" value=<?php echo $post['id']?> ><img src="./static/images/like.png"></button> <?= $post['likes'] ?>
 				</div>
 				<p class="card-text"><?= $post['text'] ?></p>
+				<br>
 				<p class="card-date"><?= $post['date'] ?></p>
 			</div>
 		<?php endforeach ?>

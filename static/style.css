@@ -4,6 +4,9 @@
 	box-sizing: border-box;
 	font-family: sans-serif;
 }
+body{
+	margin-bottom: 50px;
+}
 .container{
 	width: 90%;
 	margin: 0 auto;
@@ -40,12 +43,12 @@ header{
 	text-align: left;
 	width: 50%;
 	background-color: #eee;
-	margin: 5px 0;
+	margin: 10px 0;
 	border: 1px solid black;
 }
-.card-user, .card-text, .card-date, .card-btn{
-	display: inline-block;
-	margin: 0 10px;
+.card-user, .card-text, .card-date, .card-btn, .card-btn-group{
+	/* display: inline-block; */
+	margin: 0 20px;
 }
 .card-user{
 	font-size: 20px;
@@ -59,21 +62,25 @@ header{
 	font-size: 20px;
 }
 .card-btn{
-	font-size: 20px;
+	font-size: 200px;
 	border: none;
 	border-radius: 5px;
 	padding-right: 1px;
 	padding-bottom: 1px;
 }
 
+.card-date{
+	display: block;
+	text-align: right;
+	margin-bottom: 5px;
+}
 /* Post */
-
 .like-btn{
     border: none;
     border-radius: 5px;
+    background-color: grey;
     padding: 1px 3px;
     margin: 2px 0;
-	margin-left: 10px;
 }
 .like-btn img{
     width: 30px;

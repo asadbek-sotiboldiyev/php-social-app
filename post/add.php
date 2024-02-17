@@ -18,8 +18,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	$text = $_POST['text'];
     $file_name = $_FILES['image']['name'];
     $tmp_name = $_FILES['image']['tmp_name'];
-    $folder = "../media/post/$file_name".time();
-    if(move_uploaded_file($tmp_name, $folder)){
+    $folder = "/media/post/".date('d-m-Y-H-i').$file_name;
+    if(move_uploaded_file($tmp_name, "..".$folder)){
         echo "<script>alert('Rasm yuklandi')</script>";
     }else{
         echo "<script>alert('Error')</script>";
