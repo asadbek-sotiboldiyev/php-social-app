@@ -8,6 +8,7 @@ require "$path/db-functions/users.php";
 require "$path/db-functions/profiles.php";
 require "$path/db-functions/posts.php";
 require "$path/db-functions/likes.php";
+require "$path/db-functions/follows.php";
 session_start();
 
 $username = $_GET['username'];
@@ -16,10 +17,14 @@ $user = get_user_by_username($username, $db);
 if(empty($user)){
 	echo "<center><h1>User not found</h1><br><a href='/'>Back</a></center>";
 }else{
- 
 	$profile = get_profile_by_username($username, $db);
 	$profile_id = $profile['id'];
 	$posts = get_posts_by_author_id($profile_id, $db);
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		follow($_SESSION['profile']['id'], $profile_id, $db);
+		header("Location: /profile?username=".$username);
+		die();
+	}
 	require "$path/header.php";
 ?>
 
@@ -30,16 +35,19 @@ if(empty($user)){
 	<div class='profile-info'>
 		<div>
 			<img class="profile-img" src="<?= $profile['photo']?>">
-			<!-- 
-			<?php if ($_SESSION['profile']['username']==$username): ?>
-				<form action="" method='POST' enctype="multipart/form-data">
-					<button class='button'><h2>image</h2></button>
-				</form>
-			<?php endif ?> 
-			-->
 		</div>
 		<div class="profile-right">
-			<h2><?= $profile['username'] ?></h2>
+			<section>
+				<h2><?= $profile['username'] ?></h2>
+				<?php if($_SESSION['profile']['username'] != $username):?>
+					<form method="POST">
+						<button type='submit' name="follow" value="follow" class="follow-btn">
+							<?php echo (is_followed($_SESSION['profile']['id'], $profile_id, $db) ? "Unfollow -" : "Follow")?>
+						</button>
+					</form>
+				<?php endif ?>
+			</section>
+			
 			<table >
 				<th><?= $profile['posts'] ?> posts</th>
 				<th><?= $profile['followers'] ?> followers</th>

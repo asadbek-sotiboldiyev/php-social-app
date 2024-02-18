@@ -19,7 +19,7 @@ session_start();
 				<nav id="header-nav">
 					<?php if($_SESSION['authenticated']): ?>
 						<a href="/profile/?username=<?= $_SESSION['profile']['username'] ?>" class="nav-link">
-							<?php echo $_SESSION['profile']['name']; ?>
+							Profile
 						</a>
 					<?php else: ?>
 						<a href="/auth/signup.php" class="nav-link">Register</a>
