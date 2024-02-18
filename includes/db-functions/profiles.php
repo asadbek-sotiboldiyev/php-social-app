@@ -14,13 +14,25 @@ function get_profile_by_username($username, $db){
 	$profile = $db->query("SELECT * FROM profiles WHERE username = '$username';")->fetch(PDO::FETCH_ASSOC);
 	return $profile;
 }
-function update_profile($current_username, $username, $photo, $bio,  $db){
-	$query = $db->prepare("UPDATE  profiles SET photo = :photo, username = :username, bio = :bio WHERE username = :cuurent_username");
+function update_profile($current_username, $username, $photo = "/media/profile-img/default.jpg", $bio, $followers, $posts, $following,  $db){
+	$query = $db->prepare("UPDATE  profiles SET photo = :photo, username = :username, bio = :bio WHERE username = :current_username");
 	$query->execute([
 		'photo' => $photo,
 		'username' => $username,
 		'bio' => $bio,
 		'current_username' => $current_username
 	]);
+	$query = $db->prepare("UPDATE  users SET username = :username WHERE username = :current_username");
+	$query->execute([
+		'username' => $username,
+		'current_username' => $current_username
+	]);
+}
+function check_username_free($username, $db){
+	$profile = get_profile_by_username($username, $db);
+	if($profile == false)
+		return true;
+	else
+		return false;
 }
 ?>

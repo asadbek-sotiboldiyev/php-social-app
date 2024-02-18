@@ -21,8 +21,12 @@ header{
 	justify-content: space-between;
 }
 #afisha a{
+	font-size: 30px;
 	color: white;
 	text-decoration: none;
+}
+#header-nav{
+	padding: 5px 0;
 }
 .nav-link{
 	display: inline-block;
@@ -46,14 +50,25 @@ header{
 	margin: 10px 0;
 	border: 1px solid black;
 }
-.card-user, .card-text, .card-date, .card-btn, .card-btn-group{
+.card-user, .card-text, .card-date, .card-btn, .card-btn-group, .card-header{
 	/* display: inline-block; */
 	margin: 0 20px;
 }
+.card-header{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.card-user-img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
 .card-user{
-	font-size: 20px;
+	position: absolute;
+	display: inline-block;
+	font-size: 25px;
 	padding-top: 5px;
-	padding-bottom: 5px;
+	padding: 10px 0;
 }
 .card-img{
 	width: 100%;

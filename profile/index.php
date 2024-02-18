@@ -54,7 +54,7 @@ if(empty($user)){
 
 	<?php if ($_SESSION['profile']['username']==$username): ?>
 		<a class="button" href="/post/add.php">POST ADD +</a>
-		<a class="button" href="edit.php">EDIT</a>
+		<a class="button" href="edit.php">SETTINGS</a>
 	<?php endif ?>
 
 	<hr>
@@ -79,7 +79,7 @@ function like(e){
 		let post_id = e.value;
 		console.log(post_id);
 		console.log(username);
-
+		console.log("<?= session_id() ?>");
 
 	}else{
 		alert("Register required");

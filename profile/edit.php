@@ -12,9 +12,39 @@ if(!$_SESSION['authenticated']){
 }else{
     $cuurent_username = $_SESSION['profile']['username'];
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // to be continued...
-    }
+        $username = $_POST['username'];
+        if(check_username_free($username, $db) or $username == $cuurent_username){
+            $bio = $_POST['bio'];
+            $file_name = $_FILES['image']['name'];
+            $tmp_name = $_FILES['image']['tmp_name'];
+            $folder = "/media/profile-img/".date('d-m-Y-H-i').$file_name;
+            if(move_uploaded_file($tmp_name, "..".$folder)){
+                $old_photo = $_SESSION['profile']['photo'];
+                if(!unlink("..".$old_photo))
+                    echo "<script>alert('Error delete file')</script>";
+                update_profile(
+                    $cuurent_username, 
+                    $username, 
+                    $folder,
+                    $bio,
+                    $_SESSION['profile']['followers'],
+                    $_SESSION['profile']['psots'],
+                    $_SESSION['profile']['following'],
+                    $db
+                );
 
+                $new_profile = get_profile_by_username($username, $db);
+                $_SESSION['profile'] = $new_profile;
+
+                header("Location: /profile?username=".$username);
+                die();
+            }else{
+                echo "<script>alert('Error')</script>";
+            }
+        }else{
+            $error = 'Username band';
+        }
+    }
 
 require "$path/header.php";
 ?>
@@ -25,12 +55,15 @@ require "$path/header.php";
         <h2>Edit: <?= $cuurent_username ?></h2>
         <div class="block">
             <p>username</p>
-            <input type="text" name='username'>
+            <input type="text" name='username' value=<?= $_SESSION['profile']['username'] ?>>
+            <?php if(isset($error)):?>
+                <p><?= $error ?></p>
+            <?php endif ?>
         </div>
 
         <div class="block">
             <p>BIO</p>
-            <textarea name="bio" rows="5"></textarea>
+            <textarea name="bio" rows="5"><?= $_SESSION['profile']['bio'] ?></textarea>
         </div>
 
         <div class="block">
@@ -39,6 +72,7 @@ require "$path/header.php";
         <br>
         <button type="submit">Save</button>
     </form>
+    <a href="/auth/logout.php">Logout</a>
 </div>
 
 <!-- End Content -->

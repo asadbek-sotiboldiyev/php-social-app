@@ -30,9 +30,12 @@ $posts = get_posts_author_in_list($users_list,$db);
 				$post_author_username = $profile['username'];
 			?>
 			<div class="post-card">
-				<a href="/profile/?username=<?=$post_author_username?>" class="card-user">
-							<?= $post_author_username ?>
-				</a>
+				<div class="card-header">
+					<img src="<?= $profile['photo'] ?>" class="card-user-img">
+					<a href="/profile/?username=<?=$post_author_username?>" class="card-user">
+								<?= $post_author_username ?>
+					</a>
+				</div>
 				<img src="<?= $post['photo']?>" class="card-img">
 				<div class="card-btn-group">
 					<button class="like-btn" value=<?php echo $post['id']?> ><img src="./static/images/like.png"></button> <?= $post['likes'] ?>
