@@ -11,7 +11,7 @@ body{
 	width: 90%;
 	margin: 0 auto;
 }
-/* Home page */
+/* header page */
 header{
 	background-color: blue;
 	padding: 5px 0;
@@ -43,9 +43,24 @@ header{
 	background-color: #4baeff;
 	text-decoration: underline;
 }
+/* Home page */
+#followers-reel{
+	padding: 3px 0;
+}
+.following-user-card{
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px 8px;
+}
+.following-user-card a{
+	font-size: 20px;
+	text-decoration: none;
+}
 .post-card{
+	width: 60%;
+	margin: 0 auto;
 	text-align: left;
-	width: 50%;
 	background-color: #eee;
 	margin: 10px 0;
 	border: 1px solid black;

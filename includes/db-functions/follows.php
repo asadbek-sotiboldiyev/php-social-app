@@ -47,4 +47,25 @@ function follow($follower_id, $profile_id, $db){
     }
 }
 
+function get_followings_as_string($follower_id, $db){
+    $query = $db->prepare("SELECT profile_id FROM follows WHERE follower_id = :follower_id");
+    $query->execute([
+        "follower_id" => $follower_id
+    ]);
+    $followings = $query->fetchAll(PDO::FETCH_ASSOC);
+    $list = "";
+    foreach($followings as $following){
+        $list = $list . ", " .$following['profile_id'];
+    }
+    $list = substr($list, 1);
+    return $list;
+}
+
+function get_followings($follower_id, $db){
+    $list = get_followings_as_string($follower_id, $db);
+    $query = $db->prepare("SELECT id, username, photo FROM profiles WHERE id IN ($list)");
+    $query->execute();
+    $followings = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $followings;
+}
 ?>
