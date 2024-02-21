@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 	$name = $_POST['name'];
 	$username = $_POST['username'];
 	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$password = $_POST['password1'];
 
 	if (checker([$name, $username, $email, $password])){
 		$error = "Hamma maydonni to'ldiring !";

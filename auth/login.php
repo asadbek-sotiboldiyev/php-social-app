@@ -1,9 +1,14 @@
 <?php
-
+session_start();
 $title = "Login";
 $path = "../includes";
 
-require "$path/header.php";
+
+if(isset($_SESSION['authenticated'])){
+	require "$path/header.php";
+	require 'message.html';
+}else{
+
 require "$path/database.php";
 require "$path/db-functions/users.php";
 require "$path/db-functions/profiles.php";
@@ -19,36 +24,40 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 		$profile = get_profile_by_username($username, $db);
 		session_start();
 		$_SESSION['profile'] = $profile;
-		$_SESSION['authenticated'] = true;
+		$_SESSION['authenticated'] = 1;
 		header('Location: /');
 		die();
 }
 }
 
 ?>
-
+<link rel="stylesheet" href="../static/style.css">
+<link rel="stylesheet" href="../static/form.css">
 <!-- Content -->
 <div class="container">
-	<form method="post">
-		
-		<?php if (isset($error)): ?>
-			<p class="block">
-				<?= $error ?>
-			</p>
-		<?php endif ?>
-
-		<h1>Login</h1>
-		<div>
-			<p>Username</p>
-			<input  type="text" name="username">
-		</div>
-		<div>
-			<p>Password</p>
-			<input  type="text" name="password">
-		</div>
-		<button>Submit</button>
-	</form>
+	<center>
+		<form class="form" method='post'>
+			<?php if (isset($error)): ?>
+				<p class="error">
+					<?= $error ?>
+				</p>
+			<?php endif ?>
+			
+			<h1 id="title">Login</h1>
+			<div class="form-control">
+				<input type="text" placeholder="Username" name='username'>
+			</div>
+			<div class="form-control">
+				<input type="password" placeholder="Password" name='password'>
+			</div>
+			<button class="submit-btn">Login</button>
+			<div class="other-way">
+				<p>Don't have an account?</p>
+				<a href="signup.php">Register</a>
+			</div>
+		</form>
+	</center>
 </div>
 <!-- End-Content -->
 
-<?php require "$path/footer.php"; ?>
+<?php require "$path/footer.php"; }?>

@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +14,7 @@ session_start();
 					<a href="/">PHPgramm</a>
 				</h2>
 				<nav id="header-nav">
-					<?php if($_SESSION['authenticated']): ?>
+					<?php if(isset($_SESSION['authenticated'])): ?>
 						<a href="/profile/?username=<?= $_SESSION['profile']['username'] ?>" class="nav-link">
 							Profile
 						</a>

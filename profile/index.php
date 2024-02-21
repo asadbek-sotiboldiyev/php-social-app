@@ -14,6 +14,9 @@ session_start();
 $username = $_GET['username'];
 $user = get_user_by_username($username, $db);
 
+if(isset($_SESSION['profile']))
+	$PROFILE = $_SESSION['profile'];
+
 if(empty($user)){
 	echo "<center><h1>User not found</h1><br><a href='/'>Back</a></center>";
 }else{
@@ -30,7 +33,7 @@ if(empty($user)){
 
 <!-- Content -->
 <link rel="stylesheet" href="../static/profile.css">
-<link rel="stylesheet" href="../static/post.css">
+<link rel="stylesheet" href="../static/posts.css">
 <div class="container">
 	<div class='profile-info'>
 		<div>
@@ -39,13 +42,15 @@ if(empty($user)){
 		<div class="profile-right">
 			<section>
 				<h2><?= $profile['username'] ?></h2>
-				<?php if($_SESSION['profile']['username'] != $username):?>
+
+				<?php if(isset($PROFILE) and $PROFILE['username'] != $username):?>
 					<form method="POST">
 						<button type='submit' name="follow" value="follow" class="follow-btn">
 							<?php echo (is_followed($_SESSION['profile']['id'], $profile_id, $db) ? "Unfollow -" : "Follow")?>
 						</button>
 					</form>
 				<?php endif ?>
+
 			</section>
 			
 			<table >
@@ -60,7 +65,7 @@ if(empty($user)){
 
 	<hr>
 
-	<?php if ($_SESSION['profile']['username']==$username): ?>
+	<?php if (isset($PROFILE) and $PROFILE['username']==$username): ?>
 		<a class="button" href="/post/add.php">POST ADD +</a>
 		<a class="button" href="edit.php">SETTINGS</a>
 	<?php endif ?>
@@ -68,30 +73,28 @@ if(empty($user)){
 	<hr>
 	<div id="posts">
 		<?php foreach ($posts as $post): ?>
-			<div class="post-card">
-				<img src="<?= $post['photo']?>" style='width:100%'>
-				<p><?php echo $post['text']?></p>
-				<button onclick=like(this) class="like-btn" value=<?php echo $post['id']?> ><img src="../static/images/like.png"></button> <?= $post['likes'] ?>
+			<?php
+				$profile = get_profile_by_id($post['author_id'], $db);
+				$post_author_username = $profile['username'];
+			?>
+			<div class="home-post-card">
+				<img class="post-img" src="<?= $post['photo']?>" class="card-img">
+				<div class="card-btn-group">
+					<button onclick=like(this) class="card-btn" value=<?php echo $post['id']?>>
+						<img src="../static/images/like.png" alt="">
+					</button>
+					<p class="like-count">
+						<?= $post['likes'] ?>
+					</p>
+				</div>
 				<hr>
-				<p><?= $post['date']?></p>
+				<p class="card-text"><?= $post['text'] ?></p>
+				<hr>
+				<p class="card-date"><?= $post['date'] ?></p>
 			</div>
 		<?php endforeach ?>
 	</div>
 </div>
 <!-- End Content -->
-<script>
-function like(e){
-	if(<?php echo ($_SESSION['authenticated'] ? 1 : 0) ?>){
-		const username = "<?php echo $_SESSION['profile']['username'] ?>";
-		const profile_id = "<?php echo $_SESSION['profile']['id'] ?>";
-		let post_id = e.value;
-		console.log(post_id);
-		console.log(username);
-		console.log("<?= session_id() ?>");
-
-	}else{
-		alert("Register required");
-	}
-}
-</script>
+<script src='../static/script.js'></script>
 <?php require "$path/footer.php"; } ?>

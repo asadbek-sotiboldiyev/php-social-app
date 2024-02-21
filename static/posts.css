@@ -1,0 +1,87 @@
+.home-post-card{
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 5px;
+    display: inline-block;
+    background-color: #0d2137;
+    max-width: 50%;
+}
+.home-post-card .card-header{
+    display: flex;
+    margin-bottom: 5px;
+}
+.home-post-card .card-header img{
+    width: 40px;
+    border-radius: 50%;
+}
+.home-post-card .card-user{
+    display: inline-block;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 0;
+    margin-left: 10px;
+}
+.home-post-card .card-user:hover{
+    text-decoration: underline;
+}
+.home-post-card img{
+    width: 100%;
+}
+.home-post-card .post-img{
+    width:  100%;
+    border-radius: 4px;
+}
+.home-post-card .card-btn-group{
+    text-align: left;
+    display: flex;
+}
+.home-post-card .card-btn{
+    width: 35px;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0d2137;
+}
+.home-post-card .like-count{
+    color: white;
+    font-size: 22px;
+    padding: 6px;
+}
+.liked{
+}
+.home-post-card .card-btn img{
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+}
+.home-post-card .card-text{
+    color: white;
+    text-align: left;
+    font-size: 20px;
+}
+.home-post-card .card-date{
+    color: white;
+    text-align: right;
+}
+hr{
+    margin: 3px 0;
+}
+
+@media(max-width:780px){
+    .home-post-card{
+        max-width: 80%;
+    }
+}
+@media(max-width:500px){
+    .home-post-card{
+        max-width: 100%;
+        width: 100%;
+    }
+    .home-post-card .card-header img{
+        width: 30px;
+    }
+    .home-post-card .card-user{
+        padding: 4px 0;
+    }
+}

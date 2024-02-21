@@ -1,140 +1,83 @@
-*{
+* {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 	font-family: sans-serif;
 }
+
 body{
-	margin-bottom: 50px;
+    background-color: #e0eaf5;
 }
-.container{
+
+.container {
 	width: 90%;
 	margin: 0 auto;
 }
-/* header page */
-header{
-	background-color: blue;
-	padding: 5px 0;
+
+header {
+	padding: 8px 0;
+	background-color: #0d2137;
+	border-bottom: 3px solid #ff8e2b;
 }
-#header-flex{
+
+#header-flex {
 	display: flex;
 	justify-content: space-between;
 }
-#afisha a{
-	font-size: 30px;
-	color: white;
+
+header #afisha a {
+	font-size: 25px;
 	text-decoration: none;
+	color: white;
 }
-#header-nav{
-	padding: 5px 0;
-}
-.nav-link{
+
+#header-nav {
 	display: inline-block;
-	color: white;
-	text-decoration: none;
-	background-color: #187dff;
-	padding: 2px 8px;
-	margin: 0 2px;
-	border: none;
-	border-radius: 5px;
-	font-size: 17px;
 }
+
+.nav-link {
+	padding: 2px 5px;
+	margin: 0 3px;
+	display: inline-block;
+	color: #0d2137;
+	background-color: #ff8e2b;
+	font-size: 20px;
+	border-radius: 3px;
+	text-decoration: none;
+}
+
 .nav-link:hover{
-	background-color: #4baeff;
 	text-decoration: underline;
 }
-/* Home page */
-#followers-reel{
-	padding: 3px 0;
-}
-.following-user-card{
-	display: inline-block;
-	border: 1px solid black;
-	border-radius: 5px;
-	padding: 3px 8px;
-}
-.following-user-card a{
+footer{
+	margin-top: 20px;
+	background-color: #0d2137;
+	color: white;
 	font-size: 20px;
-	text-decoration: none;
+	padding: 5px 0;
+	text-align: center;
 }
-.post-card{
-	width: 60%;
-	margin: 0 auto;
-	text-align: left;
-	background-color: #eee;
-	margin: 10px 0;
-	border: 1px solid black;
-}
-.card-user, .card-text, .card-date, .card-btn, .card-btn-group, .card-header{
-	/* display: inline-block; */
-	margin: 0 20px;
-}
-.card-header{
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-.card-user-img{
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-}
-.card-user{
-	position: absolute;
-	display: inline-block;
-	font-size: 25px;
-	padding-top: 5px;
-	padding: 10px 0;
-}
-.card-img{
-	width: 100%;
-}
-.card-text{
-	font-size: 20px;
-}
-.card-btn{
-	font-size: 200px;
-	border: none;
-	border-radius: 5px;
-	padding-right: 1px;
-	padding-bottom: 1px;
-}
-
-.card-date{
-	display: block;
-	text-align: right;
-	margin-bottom: 5px;
-}
-/* Post */
-.like-btn{
-    border: none;
-    border-radius: 5px;
-    background-color: grey;
-    padding: 1px 3px;
-    margin: 2px 0;
-}
-.like-btn img{
-    width: 30px;
-    height: 30px;
-}
-.liked{
-    background-color: #fc3d3d;
-}
-
-/* Default - for test */
-.block{
-	border: 1px solid black;
-	padding: 5px;
-	margin: 2px 0;
-	background-color: rgb(230, 230, 230);
-}
-.cls{
-	clear: both;
-}
+/* For test */
 .button{
 	display: inline-block;
-	padding: 5px ;
-	border: 1px solid black;
-	background-color: green;
-	margin: 2px;
+	background-color: #2e77ae;
 	color: white;
+	text-decoration: none;
+	font-size: 22px;
+	padding: 5px ;
+	margin: 3px 5px;
+}
+.button:hover{
+	text-decoration: underline;
+}
+
+@media(max-width:300px){
+	#header-flex{
+		display: block;
+	}
+	#header-nav{
+		display: flex;
+		width: 100%;
+		justify-content: flex-end;
+	}
 }

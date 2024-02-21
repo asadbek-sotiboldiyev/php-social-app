@@ -20,8 +20,11 @@ if(!$_SESSION['authenticated']){
             $folder = "/media/profile-img/".date('d-m-Y-H-i').$file_name;
             if(move_uploaded_file($tmp_name, "..".$folder)){
                 $old_photo = $_SESSION['profile']['photo'];
-                if(!unlink("..".$old_photo))
-                    echo "<script>alert('Error delete file')</script>";
+                if($old_photo != "/media/profile-img/default.jpg"){
+                    if(!unlink("..".$old_photo)){
+                        echo "<script>alert('Error delete file')</script>";
+                    }
+                }
                 update_profile(
                     $cuurent_username, 
                     $username, 
