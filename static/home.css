@@ -16,3 +16,6 @@
 	margin: 8px 4px;
 	border-radius: 3px;
 }
+.following-scroll a:hover{
+	text-decoration: underline;
+}

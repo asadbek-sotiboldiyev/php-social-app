@@ -6,6 +6,7 @@
 }
 
 body{
+	margin-bottom: 50px;
     background-color: #e0eaf5;
 }
 
@@ -50,7 +51,10 @@ header #afisha a {
 	text-decoration: underline;
 }
 footer{
-	margin-top: 20px;
+	position: fixed;
+    left: 0;
+    bottom: 0;
+	width: 100%;
 	background-color: #0d2137;
 	color: white;
 	font-size: 20px;

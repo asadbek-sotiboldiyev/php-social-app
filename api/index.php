@@ -1,20 +1,20 @@
 <?php
-$session_id = $_GET['session_id'];
-session_id($session_id);
-
-session_start();
 
 $path = "../includes";
 require "$path/database.php";
+require "$path/db-functions/profiles.php";
 
 if(1){
 	$command = $_GET['command'];
 	if($command == 'like'){
 		$post_id = $_GET['post_id'];
+		$user_id = $_GET['user_id'];
+
+		$profile = get_profile_by_id($user_id, $db);
 		$response = [
 			"message" => "liked",
 			"post" => $post_id,
-			"user" => $_SESSION['profile']['username']
+			"user" => $profile
 		];
 		echo json_encode($response);
 	}

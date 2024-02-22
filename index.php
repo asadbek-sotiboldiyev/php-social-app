@@ -51,7 +51,7 @@ $follows = get_followings($_SESSION['profile']['id'], $db);
 
 				<img class="post-img" src="<?= $post['photo']?>" class="card-img">
 				<div class="card-btn-group">
-					<button onclick=like(this) class="card-btn" value=<?php echo $post['id']?>>
+					<button onclick=like(this) class="card-btn dis-liked" value=<?php echo $post['id']?>>
 						<img src="./static/images/like.png" alt="">
 					</button>
 					<p class="like-count">
@@ -69,5 +69,8 @@ $follows = get_followings($_SESSION['profile']['id'], $db);
 </div>
 <!-- End-Content -->
 
-<script src='../static/script.js'></script>
+<script src='static/script.js'></script>
+<!-- <script>
+	<?php require "static/script.js";?>
+</script> -->
 <?php require "$path/footer.php"; ?>

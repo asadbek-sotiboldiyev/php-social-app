@@ -35,7 +35,7 @@ if(empty($user)){
 <link rel="stylesheet" href="../static/profile.css">
 <link rel="stylesheet" href="../static/posts.css">
 <div class="container">
-	<div class='profile-info'>
+	<!-- <div class='profile-info'>
 		<div>
 			<img class="profile-img" src="<?= $profile['photo']?>">
 		</div>
@@ -60,29 +60,66 @@ if(empty($user)){
 			</table>
 			<p><?= $profile['name'] ?></p>
 		</div>
-		<div class="cls"></div>
-	</div>
+	</div> -->
 
-	<hr>
+	<div class='profile-info'>
+			<div class="profile-flex">
+				<img class="profile-img" src="<?= $profile['photo']?>">
+
+				<div class="profile-right">
+					<section>
+						<h2 class="profile-username">
+							<?= $profile['username'] ?>
+						</h2>
+
+						<?php if(isset($PROFILE) and $PROFILE['username'] != $username):?>
+							<form method="POST">
+								<button type='submit' name="follow" value="follow" class="button">
+								<?php echo (is_followed($_SESSION['profile']['id'], $profile_id, $db) ? "Unfollow -" : "Follow")?>
+								</button>
+							</form>
+						<?php endif ?>
+
+					</section>
+					<p class="profile-name">
+						<?= $profile['name'] ?>
+					</p>
+				</div>
+			</div>
+
+			<table class="profile-table">
+				<th>posts</th>
+				<th>followers</th>
+				<th>following</th>
+				<tr>
+					<td><?= $profile['posts'] ?></td>
+					<td><?= $profile['followers'] ?></td>
+					<td><?= $profile['following'] ?></td>
+				</tr>
+			</table>
+		</div>
 
 	<?php if (isset($PROFILE) and $PROFILE['username']==$username): ?>
+		<hr>
 		<a class="button" href="/post/add.php">POST ADD +</a>
 		<a class="button" href="edit.php">SETTINGS</a>
 	<?php endif ?>
 
-	<hr>
+
 	<div id="posts">
 		<?php foreach ($posts as $post): ?>
 			<?php
 				$profile = get_profile_by_id($post['author_id'], $db);
 				$post_author_username = $profile['username'];
 			?>
+
 			<div class="home-post-card">
 				<img class="post-img" src="<?= $post['photo']?>" class="card-img">
 				<div class="card-btn-group">
-					<button onclick=like(this) class="card-btn" value=<?php echo $post['id']?>>
+					<button onclick=like(this) class="card-btn dis-liked" value=<?php echo $post['id']?>>
 						<img src="../static/images/like.png" alt="">
 					</button>
+					
 					<p class="like-count">
 						<?= $post['likes'] ?>
 					</p>

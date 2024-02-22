@@ -1,22 +1,25 @@
 .home-post-card{
     margin: 8px 0;
     padding: 8px;
+    border: 1px solid black;
     border-radius: 5px;
     display: inline-block;
-    background-color: #0d2137;
-    max-width: 50%;
+    background-color: white;
+    max-width: 49%;
 }
 .home-post-card .card-header{
     display: flex;
     margin-bottom: 5px;
 }
 .home-post-card .card-header img{
+    border: 2px solid black;
     width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 .home-post-card .card-user{
     display: inline-block;
-    color: white;
+    color: blue;
     text-align: left;
     text-decoration: none;
     font-size: 20px;
@@ -42,26 +45,22 @@
     padding: 3px;
     border: none;
     border-radius: 5px;
-    background-color: #0d2137;
 }
 .home-post-card .like-count{
-    color: white;
     font-size: 22px;
     padding: 6px;
 }
-.liked{
+.dis-liked{
+    background-color: white;
 }
-.home-post-card .card-btn img{
-    filter: invert(100%);
-    -webkit-filter: invert(100%);
+.liked{
+    background-color: #ff7d00;
 }
 .home-post-card .card-text{
-    color: white;
     text-align: left;
     font-size: 20px;
 }
 .home-post-card .card-date{
-    color: white;
     text-align: right;
 }
 hr{
