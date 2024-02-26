@@ -79,6 +79,7 @@ hr{
     }
     .home-post-card .card-header img{
         width: 30px;
+        height: 30px;
     }
     .home-post-card .card-user{
         padding: 4px 0;

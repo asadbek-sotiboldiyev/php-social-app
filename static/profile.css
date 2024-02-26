@@ -37,3 +37,8 @@
 .profile-table th{
     padding-left: 8px;
 }
+@media(max-width:500px){
+    .profile-right section{
+        display: block;
+    }
+}

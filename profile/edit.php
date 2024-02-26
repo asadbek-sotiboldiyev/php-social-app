@@ -14,7 +14,6 @@ $cuurent_username = $_SESSION['profile']['username'];
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = $_POST['username'];
     if(check_username_free($username, $db) or $username == $cuurent_username){
-        $bio = $_POST['bio'];
         $file_name = $_FILES['image']['name'];
         $tmp_name = $_FILES['image']['tmp_name'];
         $folder = "/media/profile-img/".date('d-m-Y-H-i').$file_name;
@@ -29,10 +28,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $cuurent_username, 
                 $username, 
                 $folder,
-                $bio,
-                $_SESSION['profile']['followers'],
-                $_SESSION['profile']['psots'],
-                $_SESSION['profile']['following'],
                 $db
             );
 
@@ -62,11 +57,6 @@ require "$path/header.php";
             <?php if(isset($error)):?>
                 <p><?= $error ?></p>
             <?php endif ?>
-        </div>
-
-        <div class="block">
-            <p>BIO</p>
-            <textarea name="bio" rows="5"><?= $_SESSION['profile']['bio'] ?></textarea>
         </div>
 
         <div class="block">
