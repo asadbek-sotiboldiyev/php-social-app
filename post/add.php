@@ -5,11 +5,7 @@ require "$path/database.php";
 require "$path/db-functions/posts.php";
 
 session_start();
-
-if(!$_SESSION["authenticated"]){
-    header("Location: /auth/login.php");
-    die();
-}
+require "$path/login-required.php";
 
 $profile = $_SESSION['profile'];
 $username = $profile['username'];

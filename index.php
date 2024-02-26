@@ -6,40 +6,73 @@ $path = "includes";
 require "$path/header.php";
 require "$path/database.php";
 
-if(empty($_SESSION)){
-	header("Location: /auth/login.php");
-	die();
-}
+require "$path/login-required.php";
 
 require "$path/db-functions/users.php";
 require "$path/db-functions/posts.php";
 require "$path/db-functions/profiles.php";
 require "$path/db-functions/follows.php";
+require "$path/db-functions/likes.php";
 
-$users_list = get_followings_as_string($_SESSION['profile']['id'], $db);
+$PROFILE = $_SESSION['profile'];
+
+$users_list = get_followings_as_string($PROFILE['id'], $db);
 $posts = get_posts_author_in_list($users_list,$db);
 
-$follows = get_followings($_SESSION['profile']['id'], $db);
+$top_users = get_top_profiles(
+	get_followings_as_string($PROFILE['id'], $db),
+	$PROFILE['id'],
+	$db
+);
+
+$follows = get_followings($PROFILE['id'], $db);
 ?>
+
 <link rel="stylesheet" href="./static/home.css">
 <link rel="stylesheet" href="./static/posts.css">
 <!-- Content -->
 
 <div class="container">
-	
-<div class="following-scroll">
-		<?php foreach ($follows as $follwing_profile): ?>
-			<a href="/profile/?username=<?= $follwing_profile['username']?>">
-				<?= $follwing_profile['username']?>
-			</a>
-		<?php endforeach ?>
-	</div>
+	<!--Following  -->
+	<?php if($PROFILE['followings'] > 0):?>
+		<div class="following-scroll">
+			<?php foreach ($follows as $follwing_profile): ?>
+				<a class="following-user" href="/profile/?username=<?= $follwing_profile['username']?>">
+					<?= $follwing_profile['username']?>
+				</a>
+			<?php endforeach ?>
+		</div>
+	<?php endif?>
+	<!--End-Following  -->
+
+	<!-- Recommendation -->
+	<?php if($PROFILE['follower'] <= 10):?>
+		<div class="following-scroll">
+			<?php foreach ($top_users as $user): ?>
+				<div class="rec-card">
+					<center>
+						<img src="<?= $user['photo'] ?>">
+						<a href="/profile?username=<?= $user['username'] ?>" class="rec-user"><?= $user['username'] ?></a>
+						<br>
+						<a class="rec-view" href="/profile?username=<?= $user['username'] ?>">View</a>
+					</center>
+				</div>
+			<?php endforeach ?>
+		</div>
+	<?php endif?>
+	<!-- End-Recommendation -->
 
 	<center>
 		<?php foreach ($posts as $post): ?>
 			<?php
 				$profile = get_profile_by_id($post['author_id'], $db);
 				$post_author_username = $profile['username'];
+
+				$is_liked = is_liked($post['id'], $PROFILE['id'], $db);
+				if($is_liked)
+					$is_liked = "liked";
+				else
+					$is_liked = 'dis-liked';
 			?>
 			<div class="home-post-card">
 				<div class="card-header">
@@ -51,7 +84,7 @@ $follows = get_followings($_SESSION['profile']['id'], $db);
 
 				<img class="post-img" src="<?= $post['photo']?>" class="card-img">
 				<div class="card-btn-group">
-					<button onclick=like(this) class="card-btn dis-liked" value=<?php echo $post['id']?>>
+					<button onclick="like(this, <?= $PROFILE['id'] ?>)" class="card-btn <?= $is_liked ?>" value=<?php echo $post['id']?>>
 						<img src="./static/images/like.png" alt="">
 					</button>
 					<p class="like-count">

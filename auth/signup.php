@@ -47,5 +47,4 @@ require "signup-script.php";
 	</center>
 </div>
 <!-- End-Content -->
-
-<?php require "$path/footer.php"; }?>
+<?php }?>

@@ -1,0 +1,23 @@
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+	width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #0d2137;
+    padding: 5px 0;
+}
+.footer-link{
+    display: inline-block;
+    width: 40px;
+}
+.footer-link img{
+    width: 100%;
+    border-radius: 50%;
+}
+.invert{
+    filter: invert(100%);
+    padding: 3px;
+    border: 2px solid black;
+}

@@ -60,4 +60,4 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 </div>
 <!-- End-Content -->
 
-<?php require "$path/footer.php"; }?>
+<?php }?>

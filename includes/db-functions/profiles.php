@@ -1,9 +1,15 @@
 <?php
 
 // Profile table
-function get_profiles($db){
-	$profiles = $db->query("SELECT * FROM profiles");
-	$profiles = $profiles->fetchAll(PDO::FETCH_ASSOC);
+function get_top_profiles($followings, $user_id, $db){
+	$query = $db->prepare("SELECT *
+		FROM profiles
+		WHERE NOT id IN ($followings) and not id = $user_id
+		ORDER BY followers DESC
+		LIMIT 10;
+	");
+	$query->execute();
+	$profiles = $query->fetchAll(PDO::FETCH_ASSOC);
 	return $profiles;
 }
 function get_profile_by_id($id, $db){

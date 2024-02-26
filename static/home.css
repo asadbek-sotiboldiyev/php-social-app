@@ -5,8 +5,7 @@
 	overflow-x: scroll;
 	white-space: nowrap;
 }
-
-.following-scroll a {
+.following-user{
 	display: inline-block;
 	background-color: #0d2137;
 	color: white;
@@ -18,4 +17,37 @@
 }
 .following-scroll a:hover{
 	text-decoration: underline;
+}
+
+.rec-card{
+	display: inline-block;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 7px;
+	padding: 10px;
+	margin: 3px 10px;
+}
+.rec-card img{
+	width: 60px;
+	display: block;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+.rec-user{
+	display: inline-block;
+	font-size: 20px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px 0;
+}
+.rec-view{
+	display: inline-block;
+	border: none;
+	color: white;
+	font-size: 18px;
+	padding: 3px 8px;
+	border-radius: 5px;
+	background-color: #2e77ae;
+	cursor: pointer;
 }
