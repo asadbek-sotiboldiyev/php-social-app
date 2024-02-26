@@ -32,6 +32,12 @@ function like(btn, user_id){
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
-
-    
 }
+var loadFile_img = function(event) {
+    var image = document.getElementById('output-img');
+    image.src = URL.createObjectURL(event.target.files[0]);
+    var input_img = document.getElementById('label-img');
+    input_img.textContent = "Almashtirish";
+    input_img.classList.add('uploaded');
+  };
+

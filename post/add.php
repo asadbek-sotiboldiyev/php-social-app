@@ -35,23 +35,23 @@ require "$path/header.php";
 ?>
 
 <!-- Content -->
-
+<link rel="stylesheet" href="../static/post-add.css">
 <div class="container">
-    <form method="POST" enctype="multipart/form-data">
-        <h2>Post Add +</h2>
-        <p>Text</p>
-        <textarea name="text" rows="5"></textarea>
-        <input require type="file" name="image" id="image">
-        <br>
-        <button type="submit">Share</button>
+    
+    <form class="form" method='POST' enctype="multipart/form-data">
+        <h1 id="title">Post add</h1>
+        <div class="form-control">
+            <textarea rows="4" name='text' placeholder="Text..."></textarea>
+        </div>
+        <div class="form-control">
+            <label for="image-upl" class="label-img" id="label-img">Upload image</label>
+            <input type="file" name="image" id="image-upl" onchange="loadFile_img(event)">
+            <img class="output" id="output-img" width="250">
+        </div>
+        <button type='submit' class="submit-btn">Post</button>
     </form>
 </div>
 
 <!-- End-Content -->
-<style>
-    textarea{
-        width: 100%;
-        padding: 5px;
-    }
-</style>
+<script src='../static/script.js'></script>
 <?php require "$path/footer.php"; ?>
