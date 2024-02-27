@@ -78,7 +78,7 @@ if(empty($user)){
 	<?php if (isset($PROFILE) and $PROFILE['username']==$username): ?>
 		<hr>
 		<a class="button" href="/post/add.php">POST ADD +</a>
-		<a class="button" href="edit.php">SETTINGS</a>
+		<a class="button" href="/profile/edit.php">SETTINGS</a>
 	<?php endif ?>
 
 	<!-- Posts -->

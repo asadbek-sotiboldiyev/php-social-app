@@ -20,10 +20,11 @@ function get_profile_by_username($username, $db){
 	$profile = $db->query("SELECT * FROM profiles WHERE username = '$username';")->fetch(PDO::FETCH_ASSOC);
 	return $profile;
 }
-function update_profile($current_username, $username, $photo = "/media/profile-img/default.jpg", $db){
-	$query = $db->prepare("UPDATE  profiles SET photo = :photo, username = :username WHERE username = :current_username");
+function update_profile($current_username, $username, $name, $photo = "/media/profile-img/default.jpg", $db){
+	$query = $db->prepare("UPDATE  profiles SET photo = :photo, username = :username, name = :name WHERE username = :current_username");
 	$query->execute([
 		'photo' => $photo,
+		'name' => $name,
 		'username' => $username,
 		'current_username' => $current_username
 	]);
