@@ -4,11 +4,13 @@
 function get_top_profiles($followings, $user_id, $db){
 	$query = $db->prepare("SELECT *
 		FROM profiles
-		WHERE NOT id IN ($followings) and not id = $user_id
+		WHERE NOT id IN ($followings) AND NOT id = :user_id
 		ORDER BY followers DESC
-		LIMIT 10;
+		LIMIT 10
 	");
-	$query->execute();
+	$query->execute([
+		'user_id' => $user_id
+	]);
 	$profiles = $query->fetchAll(PDO::FETCH_ASSOC);
 	return $profiles;
 }

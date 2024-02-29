@@ -34,7 +34,7 @@ $follows = get_followings($PROFILE['id'], $db);
 
 <div class="container">
 	<!--Following  -->
-	<?php if($PROFILE['followings'] > 0):?>
+	<?php if($PROFILE['following'] > 0):?>
 		<div class="following-scroll">
 			<?php foreach ($follows as $follwing_profile): ?>
 				<a class="following-user" href="/profile/?username=<?= $follwing_profile['username']?>">
@@ -46,7 +46,7 @@ $follows = get_followings($PROFILE['id'], $db);
 	<!--End-Following  -->
 
 	<!-- Recommendation -->
-	<?php if($PROFILE['follower'] <= 10):?>
+	<?php if($PROFILE['followers'] <= 10 and !empty($top_users)):?>
 		<div class="following-scroll">
 			<?php foreach ($top_users as $user): ?>
 				<div class="rec-card">

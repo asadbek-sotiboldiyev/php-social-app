@@ -10,10 +10,12 @@ function get_user_by_id($id, $db){
 	return $user;
 }
 function get_user_by_username($username, $db){
+	$username = strtolower($username);
 	$user = $db->query("SELECT * FROM users WHERE username = '$username';")->fetch(PDO::FETCH_ASSOC);
 	return $user;
 }
 function check_user($username, $password, $db){
+	$username = strtolower($username);
 	$query = $db->prepare("SELECT * FROM users WHERE username = :username and password = :password");
 	$query->execute([
 		"username" => $username,
@@ -26,6 +28,7 @@ function check_user($username, $password, $db){
 		return true;
 }
 function create_user($username, $email, $password, $name, $db){
+	$username = strtolower($username);
 	try{
 		$query = $db->prepare("INSERT INTO users (`username`, `email`, `password`, `joined_date`) VALUES (:username, :email, :password, :joined_date)");
 		$query->execute([

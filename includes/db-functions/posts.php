@@ -10,26 +10,17 @@ function get_posts_by_author_id($id, $db){
 	return $posts;
 }
 function get_posts_author_in_list($profiles, $db){
-	$query = $db->query("SELECT * FROM posts WHERE author_id in ($profiles) ORDER BY date DESC");
+	$query = $db->query("SELECT * FROM posts WHERE author_id in ($profiles) ORDER BY date DESC LIMIT 60");
 	$posts = $query->fetchAll(PDO::FETCH_ASSOC);
 	return $posts;
 }
 function create_post($author_id, $text, $photo, $db){
-	if($photo != '0'){
-		$query = $db->prepare("INSERT INTO posts (`author_id`, `text`, `photo`, `date`) VALUES (:author_id, :text, :photo, :date)");
-		$query->execute([
-			"author_id" => $author_id,
-			"text" => $text,
-			"photo" => $photo,
-			"date" => date("d-m-Y H:i")
-		]);
-	}else{
-		$query = $db->prepare("INSERT INTO posts (`author_id`, `text`, `date`) VALUES (:author_id, :text, :date)");
-		$query->execute([
-			"author_id" => $author_id,
-			"text" => $text,
-			"date" => date("d-m-Y H:i")
-		]);
-	}
+	$query = $db->prepare("INSERT INTO posts (`author_id`, `text`, `photo`, `date`) VALUES (:author_id, :text, :photo, :date)");
+	$query->execute([
+		"author_id" => $author_id,
+		"text" => $text,
+		"photo" => $photo,
+		"date" => date("d-m-Y H:i")
+	]);
 }
 ?>
