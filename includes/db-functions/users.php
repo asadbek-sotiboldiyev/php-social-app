@@ -14,6 +14,12 @@ function get_user_by_username($username, $db){
 	$user = $db->query("SELECT * FROM users WHERE username = '$username';")->fetch(PDO::FETCH_ASSOC);
 	return $user;
 }
+function get_users_count($db){
+	$query = $db->prepare("SELECT COUNT(*) FROM users");
+	$query->execute();
+	$result = $query->fetch(PDO::FETCH_ASSOC);
+	return $result["COUNT(*)"];
+}
 function check_user($username, $password, $db){
 	$username = strtolower($username);
 	$query = $db->prepare("SELECT * FROM users WHERE username = :username and password = :password");
@@ -21,11 +27,15 @@ function check_user($username, $password, $db){
 		"username" => $username,
 		"password" => sha1($password)
 	]);
-	$user = $query->fetch((PDO::FETCH_ASSOC));
+	$user = $query->fetch(PDO::FETCH_ASSOC);
 	if($user == false)
 		return false;
 	else
 		return true;
+}
+function user_is_admin($user_id, $db){
+	$user = get_user_by_id($user_id, $db);
+	return ($user['admin'] == '1');
 }
 function create_user($username, $email, $password, $name, $db){
 	$username = strtolower($username);

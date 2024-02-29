@@ -3,10 +3,10 @@ session_start();
 $title = "Home";
 $path = "includes";
 
+require "$path/login-required.php";
+
 require "$path/header.php";
 require "$path/database.php";
-
-require "$path/login-required.php";
 
 require "$path/db-functions/users.php";
 require "$path/db-functions/posts.php";

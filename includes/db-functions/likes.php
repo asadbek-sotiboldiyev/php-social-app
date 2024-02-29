@@ -40,4 +40,11 @@ function like($post_id, $profile_id, $db){
     }
 }
 
+function get_likes_count($db){
+	$query = $db->prepare("SELECT COUNT(*) FROM likes");
+	$query->execute();
+	$result = $query->fetch(PDO::FETCH_ASSOC);
+	return $result["COUNT(*)"];
+}
+
 ?>

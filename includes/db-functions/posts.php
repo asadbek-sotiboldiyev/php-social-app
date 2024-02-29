@@ -14,6 +14,12 @@ function get_posts_author_in_list($profiles, $db){
 	$posts = $query->fetchAll(PDO::FETCH_ASSOC);
 	return $posts;
 }
+function get_posts_count($db){
+	$query = $db->prepare("SELECT COUNT(*) FROM posts");
+	$query->execute();
+	$result = $query->fetch(PDO::FETCH_ASSOC);
+	return $result["COUNT(*)"];
+}
 function create_post($author_id, $text, $photo, $db){
 	$query = $db->prepare("INSERT INTO posts (`author_id`, `text`, `photo`, `date`) VALUES (:author_id, :text, :photo, :date)");
 	$query->execute([
