@@ -14,6 +14,11 @@
 				<h2 id="afisha">
 					<a href="/">PHPgramm</a>
 				</h2>
+				<?php if(isset($_SESSION['admin'])):?>
+					<nav class='header-nav'>
+						<a href="/admin" class="nav-link">Admin</a>
+					</nav>
+				<?php endif?>
 			</div>
 		</div>
 	</header>

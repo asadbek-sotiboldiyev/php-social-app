@@ -15,10 +15,12 @@ if(!user_is_admin($PROFILE['id'], $db)){
 }else{
 
     require "$path/db-functions/profiles.php";
-    require "$path/db-functions/posts.php";
-    require "$path/db-functions/likes.php";
-
+    $search = '';
     $last_logined_users = get_profiles_last_login($db);
+    if(isset($_GET['q'])){
+        $search = $_GET['q'];
+        $last_logined_users = get_profiles_contains_username($search, $db);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +29,7 @@ if(!user_is_admin($PROFILE['id'], $db)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/admin-users.css">
     <link rel="stylesheet" href="/static/admin.css">
     <title>Admin panel</title>
 </head>
@@ -45,27 +48,12 @@ if(!user_is_admin($PROFILE['id'], $db)){
 
     <!-- Content -->
     <div class="container">
-        <!-- stat cards -->
-        <div class="stat-cards">
-            <div class="card blue"> 
-                <p class="title">Users</p>
-                <p class="result">
-                    <?= get_users_count($db) ?>
-                </p>
-            </div>
-            <div class="card green">
-                <p class="title">Posts</p>
-                <p class="result">
-                    <?= get_posts_count($db) ?>
-                </p>
-            </div>
-            <div class="card orange">
-                <p class="title">Likes</p>
-                <p class="result">
-                    <?= get_likes_count($db) ?>
-                </p>
-            </div>
-        </div>
+        <!-- search -->
+        <form class="search" method='GET'>
+            <input type="text" name="q" placeholder="Find user" value="<?= $search ?>">
+            <button>Find</button>
+        </form>
+        <!-- End search -->
 
         <!-- Users -->
         <div class="users-list">

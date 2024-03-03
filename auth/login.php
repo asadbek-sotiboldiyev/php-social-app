@@ -22,9 +22,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 	else{
 		$error = "succes!";
 		$profile = get_profile_by_username($username, $db);
+		$user = get_user_by_username($username, $db);
 		session_start();
+		logged_in($username, $db);
 		$_SESSION['profile'] = $profile;
 		$_SESSION['authenticated'] = 1;
+		if($user['admin'] == '1')
+			$_SESSION['admin'] = true;
 		header('Location: /');
 		die();
 }

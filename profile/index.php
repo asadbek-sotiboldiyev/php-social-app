@@ -29,6 +29,7 @@ if(empty($user)){
 		header("Location: /profile?username=".$username);
 		die();
 	}
+	$title = $profile['username'];
 	require "$path/header.php";
 ?>
 
