@@ -62,7 +62,24 @@ function logged_in($username, $db){
 		'username' => $username
 	]);
 }
-function profile_ban($id, $db){
-	
+function ban($id, $db){
+	$query = $db->prepare("UPDATE profiles SET ban = 1 WHERE id = :id");
+	$query->execute([
+		'id' => $id
+	]);
+}
+function unban($id, $db){
+	$query = $db->prepare("UPDATE profiles SET ban = 0 WHERE id = :id");
+	$query->execute([
+		'id' => $id
+	]);
+}
+function profile_is_banned($id, $db){
+	$query = $db->prepare("SELECT ban FROM profiles WHERE id = :id");
+	$query->execute([
+		'id' => $id
+	]);
+	$result = $query->fetch(PDO::FETCH_ASSOC);
+	return $result['ban'];
 }
 ?>

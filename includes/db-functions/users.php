@@ -37,6 +37,14 @@ function user_is_admin($user_id, $db){
 	$user = get_user_by_id($user_id, $db);
 	return ($user['admin'] == '1');
 }
+function username_is_valid($username, $db){
+	$pattern = '/^[a-zA-Z_]{5,}$/';
+	if(preg_match($pattern, $username)){
+		return true;
+	}else{
+		return false;
+	}
+}
 function create_user($username, $email, $password, $name, $db){
 	$username = strtolower($username);
 	try{

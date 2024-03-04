@@ -40,6 +40,7 @@ if(!user_is_admin($PROFILE['id'], $db)){
                 <a>Admin panel</a>
             </h2>
             <nav>
+                <a class="header-link" href="/">SITE</a>
                 <a class="header-link" href="/admin">Home</a>
                 <a class="header-link" href="/admin/users.php">Users</a>
             </nav>
@@ -62,6 +63,10 @@ if(!user_is_admin($PROFILE['id'], $db)){
                     <img src="<?= $user['photo']?>">
                     <a href="/admin/user.php?username=<?= $user['username'] ?>">
                         <?= $user['username']?>
+                        <?php
+                            if($user['ban'] == '1')
+                                echo " ( Ban )";
+                        ?>
                     </a>
                 </div>
             <?php endforeach ?>

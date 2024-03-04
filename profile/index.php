@@ -84,36 +84,40 @@ if(empty($user)){
 
 	<!-- Posts -->
 	<div id="posts">
-		<?php foreach ($posts as $post): ?>
+		<?php if($profile['ban'] == '0'): ?>
+			<?php foreach ($posts as $post): ?>
 
-		<?php
-			$profile = get_profile_by_id($post['author_id'], $db);
-			$post_author_username = $profile['username'];
-	
-			$is_liked = is_liked($post['id'], $PROFILE['id'], $db);
-			if($is_liked)
-				$is_liked = "liked";
-			else
-				$is_liked = 'dis-liked';
-		?>
+				<?php
+					$profile = get_profile_by_id($post['author_id'], $db);
+					$post_author_username = $profile['username'];
+			
+					$is_liked = is_liked($post['id'], $PROFILE['id'], $db);
+					if($is_liked)
+						$is_liked = "liked";
+					else
+						$is_liked = 'dis-liked';
+				?>
 
-		<div class="home-post-card">
-			<img class="post-img" src="<?= $post['photo']?>" class="card-img">
-			<div class="card-btn-group">
-				<button onclick="like(this, <?= $PROFILE['id'] ?>)" class="card-btn <?= $is_liked ?>" value=<?php echo $post['id']?>>
-					<img src="../static/images/like.png" alt="">
-				</button>
+				<div class="home-post-card">
+					<img class="post-img" src="<?= $post['photo']?>" class="card-img">
+					<div class="card-btn-group">
+						<button onclick="like(this, <?= $PROFILE['id'] ?>)" class="card-btn <?= $is_liked ?>" value=<?php echo $post['id']?>>
+							<img src="../static/images/like.png" alt="">
+						</button>
 
-				<p class="like-count">
-					<?= $post['likes'] ?>
-				</p>
-			</div>
-			<hr>
-			<p class="card-text"><?= $post['text'] ?></p>
-			<hr>
-			<p class="card-date"><?= $post['date'] ?></p>
-		</div>
-		<?php endforeach ?>
+						<p class="like-count">
+							<?= $post['likes'] ?>
+						</p>
+					</div>
+					<hr>
+					<p class="card-text"><?= $post['text'] ?></p>
+					<hr>
+					<p class="card-date"><?= $post['date'] ?></p>
+				</div>
+			<?php endforeach ?>
+		<?php else:?>
+			<h1 class='banned'>This account banned!</h1>
+		<?php endif?>
 	</div>
 </div>
 <!-- End Content -->

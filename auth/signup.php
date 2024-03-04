@@ -23,18 +23,23 @@ require "signup-script.php";
 	
 			<h1 id="title">Sign-Up</h1>
 			<div class="form-control">
-				<input type="text" placeholder="Name" name='name'>
+				<label>Name</label>
+				<input type="text" placeholder="Name" name='name' value="<?= $name ?>">
 			</div>
 			<div class="form-control">
-				<input type="text" placeholder="Username" name='username'>
+				<label>Username</label>
+				<input type="text" placeholder="Username" name='username' value="<?= $username ?>">
 			</div>
 			<div class="form-control">
-				<input type="text" placeholder="Email" name='email'>
+				<label>Email</label>
+				<input type="text" placeholder="Email" name='email' value="<?= $email ?>">
 			</div>
 			<div class="form-control">
+				<label>Password</label>
 				<input type="password" placeholder="Password" name='password1'>
 			</div>
 			<div class="form-control">
+				<label>Repeat password</label>
 				<input type="password" placeholder="Repeat password" name='password2'>
 			</div>
 			<button class="submit-btn">Sign-Up</button>

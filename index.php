@@ -68,6 +68,9 @@ $follows = get_followings($PROFILE['id'], $db);
 				$profile = get_profile_by_id($post['author_id'], $db);
 				$post_author_username = $profile['username'];
 
+				if($profile['ban'] == '1')
+					continue;
+
 				$is_liked = is_liked($post['id'], $PROFILE['id'], $db);
 				if($is_liked)
 					$is_liked = "liked";

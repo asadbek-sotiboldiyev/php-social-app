@@ -19,6 +19,23 @@ if(!user_is_admin($PROFILE['id'], $db)){
 
     $profile = get_profile_by_username($username, $db);
     $user = get_user_by_username($username, $db);
+
+    if(profile_is_banned($profile['id'], $db) == '0'){
+        $is_banned = false;
+    }
+    else
+        $is_banned = true;
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(isset($_POST['ban'])){
+            if($is_banned){
+                unban($profile['id'], $db);
+            }else{
+                ban($profile['id'], $db);
+            }
+        }
+        header("Refresh:0");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +55,7 @@ if(!user_is_admin($PROFILE['id'], $db)){
                 <a>Admin panel</a>
             </h2>
             <nav>
+                <a class="header-link" href="/">SITE</a>
                 <a class="header-link" href="/admin">Home</a>
                 <a class="header-link" href="/admin/users.php">Users</a>
             </nav>
@@ -93,9 +111,11 @@ if(!user_is_admin($PROFILE['id'], $db)){
         <!-- End Stat cards -->
 
         <!-- Btn group -->
-        <form class="btn-form">
+        <form class="btn-form" method = "POST">
             <button class="btn red">Delete</button>
-            <button class="btn red">Ban</button>
+            <button name='ban' class="btn red">
+                <?php echo ($is_banned ? "Unban" : "Ban")?>
+            </button>
         </form>
         <!-- End Btn group -->
     </div>

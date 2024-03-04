@@ -25,9 +25,15 @@ body{
 .form-control{
     width: 100%;
 }
+.form-control label{
+    text-align: left;
+    display: block;
+    font-size: 22px;
+    margin-top: 5px;
+}
 .form-control input{
     width: 100%;
-    margin: 5px 0;
+    margin-bottom: 5px;
     padding: 5px 8px;
     font-size: 25px;
     outline: none;
