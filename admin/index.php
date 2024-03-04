@@ -37,8 +37,8 @@ if(!user_is_admin($PROFILE['id'], $db)){
                 <a>Admin panel</a>
             </h2>
             <nav>
-            <a class="header-link" href="/">SITE</a>
-            <a class="header-link" href="/admin">Home</a>
+                <a class="header-link" href="/">SITE</a>
+                <a class="header-link" href="/admin">Home</a>
                 <a class="header-link" href="/admin/users.php">Users</a>
             </nav>
 		</div>
