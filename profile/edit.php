@@ -71,18 +71,18 @@ require "$path/header.php";
         <h1 id="title">Edit: <?= $cuurent_username ?></h1>
         <div class="form-control">
             <label class='input-lbl' for="username">Username</label>
-            <input type="text" name='username' value="<?= $PROFILE['username'] ?>" placeholder="Username">
+            <input required type="text" name='username' value="<?= $PROFILE['username'] ?>" placeholder="Username">
             <?php if(isset($error)):?>
                 <p class='error'><?= $error ?></p>
             <?php endif ?>
         </div>
         <div class="form-control">
             <label class='input-lbl' for="name">Name</label>
-            <input type="text" name='name' value="<?= $PROFILE['name'] ?>" placeholder="Name">
+            <input required type="text" name='name' value="<?= $PROFILE['name'] ?>" placeholder="Name">
         </div>
         <div class="form-control">
             <label for="image-upl" class="label-img" id="label-img" require>Upload profile image</label>
-            <input type="file" name="image" id="image-upl" onchange="loadFile_img(event)">
+            <input  type="file" name="image" id="image-upl" onchange="loadFile_img(event)" accept=".jpg, .jpeg, .png">
             <img class="output" id="output-img" width="250">
         </div>
         <button type='submit' class="submit-btn">Save</button>

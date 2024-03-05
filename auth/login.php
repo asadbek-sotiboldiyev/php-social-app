@@ -50,11 +50,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			<h1 id="title">Login</h1>
 			<div class="form-control">
 				<label>Username</label>
-				<input type="text" placeholder="Username" name='username'>
+				<input required type="text" placeholder="Username" name='username'>
 			</div>
 			<div class="form-control">
 				<label>Password</label>
-				<input type="password" placeholder="Password" name='password'>
+				<input required type="password" placeholder="Password" name='password'>
 			</div>
 			<button class="submit-btn">Login</button>
 			<div class="other-way">

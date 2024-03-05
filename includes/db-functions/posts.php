@@ -28,5 +28,9 @@ function create_post($author_id, $text, $photo, $db){
 		"photo" => $photo,
 		"date" => date("d-m-Y H:i")
 	]);
+	$query = $db->prepare("UPDATE profiles SET posts = posts + 1 WHERE id = :author_id");
+	$query->execute([
+		"author_id" => $author_id
+	]);
 }
 ?>

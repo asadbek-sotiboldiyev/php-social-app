@@ -42,11 +42,11 @@ require "$path/header.php";
         <form class="form" method='POST' enctype="multipart/form-data">
             <h1 id="title">Post add</h1>
             <div class="form-control">
-                <textarea rows="4" name='text' placeholder="Text..."></textarea>
+                <textarea rows="10" name='text' placeholder="Text..." maxlength='1400' required></textarea>
             </div>
             <div class="form-control">
                 <label for="image-upl" class="label-img" id="label-img">Upload image</label>
-                <input type="file" name="image" id="image-upl" onchange="loadFile_img(event)">
+                <input required type="file" name="image" id="image-upl" onchange="loadFile_img(event)" accept=".jpg, .jpeg, .png">
                 <img class="output" id="output-img" width="250">
             </div>
             <button type='submit' class="submit-btn">Post</button>
